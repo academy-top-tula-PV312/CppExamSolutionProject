@@ -53,17 +53,19 @@ int main()
     //BinaryNumber(37);
     //NumberToBase(2684, 16);
 
-    int* array = new int[20];
-    for (int i{}; i < 20; i++)
+    int size{ 20 };
+
+    int* array = new int[size];
+    for (int i{}; i < size; i++)
         array[i] = rand() % 100;
     
-    for (int i{}; i < 20; i++)
+    for (int i{}; i < size; i++)
         std::cout << array[i] << " ";
     std::cout << "\n";
 
-    ArraySortMerge(array, 20);
+    ArraySortMerge(array, size);
 
-    for (int i{}; i < 20; i++)
+    for (int i{}; i < size; i++)
         std::cout << array[i] << " ";
     std::cout << "\n";
 }
@@ -203,12 +205,12 @@ void ArraySortMerge(int* array, int size)
         ArraySortMerge((array + left_size), right_size);
 
         int left_index = 0;
-        int right_index = left_size + 1;
+        int right_index = left_size;
 
         int merge_index = 0;
-        int* merge_array = new int[size];
+        int* merge_array = new int[size] {};
 
-        while (left_index < left_size && right_index < right_size)
+        while (left_index < left_size && right_index < left_size + right_size)
         {
             if (array[left_index] < array[right_index])
             {
@@ -227,7 +229,7 @@ void ArraySortMerge(int* array, int size)
         }
         while (left_index < left_size)
             merge_array[merge_index++] = array[left_index++];
-        while (right_index < right_size)
+        while (right_index < left_size + right_size)
             merge_array[merge_index++] = array[right_index++];
 
         for (int i{}; i < size; i++)
